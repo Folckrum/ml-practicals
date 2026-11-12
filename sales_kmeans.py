@@ -7,6 +7,7 @@ df = pd.read_csv("sales_data_sample.csv", encoding="latin1")
 X = df[["QUANTITYORDERED", "PRICEEACH", "SALES", "MSRP"]].dropna()
 X = StandardScaler().fit_transform(X)
 
+# elbow method
 wcss = []
 for k in range(1, 11):
     km = KMeans(n_clusters=k, random_state=42, n_init=10)

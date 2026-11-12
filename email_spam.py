@@ -10,13 +10,16 @@ y = df["Prediction"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-models = {
-    "KNN": KNeighborsClassifier(n_neighbors=5),
-    "SVM": SVC(kernel="linear"),
-}
-for name, model in models.items():
+
+def evaluate(name, model):
     model.fit(X_train, y_train)
     pred = model.predict(X_test)
     print(name)
     print("Accuracy:", accuracy_score(y_test, pred))
-    print("Confusion matrix:\n", confusion_matrix(y_test, pred))
+    print("Confusion matrix:")
+    print(confusion_matrix(y_test, pred))
+    print()
+
+
+evaluate("KNN", KNeighborsClassifier(n_neighbors=5))
+evaluate("SVM", SVC(kernel="linear"))
